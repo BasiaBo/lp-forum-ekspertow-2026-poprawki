@@ -39,6 +39,8 @@ function App() {
       <window.MidCTA/>
       <window.Program/>
       <window.PreviousEdition/>
+      <window.Organizer/>
+      <window.Partners/>
       <window.Tickets/>
       <window.FAQSection/>
       <window.Footer/>

@@ -5,20 +5,14 @@
 const SPEAKERS = [
   { initial: "WZ", name: "Wojciech Zając", role: "Radca prawny, partner w kancelarii SDZLEGAL SCHINDHELM", v: 1, ln: true, photo: "uploads/Wojciech_Zajac.png" },
   { initial: "AK", name: "Anna Kostecka", role: "Prawniczka, Redaktorka prowadząca PortalKadrowy.pl", v: 2, ln: true, photo: "uploads/Anna_Kostecka.png" },
-  { initial: "JC", name: "Joanna Cur", role: "Radczyni prawna, specjalistka prawa pracy i HR", v: 3, ln: true, photo: "uploads/Joanna_Cur.png" },
-  { initial: "KW2", name: "Prof. UW dr hab. Krzysztof Walczak", role: "Profesor UW, partner w Kancelarii C&C Chakowski & Ciszek", v: 4, ln: true, photo: "uploads/Krzysztof_Walczak.png" },
   { initial: "KW", name: "Karol Wolski", role: "Partner Zarządzający, Współzałożyciel Mocni w HR", v: 1, ln: true, photo: "uploads/Karol_Wolski.jpg" },
-  { initial: "AR", name: "Andrzej Radzisław", role: "Radca prawny, ekspert w zakresie prawa ubezpieczeń społecznych", v: 2, ln: true, photo: "uploads/Andrzej_Radzislaw.png" },
-  { initial: "PZ", name: "Paweł Ziółkowski", role: "Prawnik, publicysta, trener, wykładowca prawa pracy i ubezpieczeń", v: 3, ln: false, photo: "uploads/Pawel_Ziolkowski.png" },
   { initial: "AT", name: "Anna Telec", role: "Radca prawny, założycielka Kancelarii Prawa Pracy", v: 2, ln: true, photo: "uploads/Anna_Telec.png" },
   { initial: "SS", name: "Szymon Sokolik", role: "Prawnik, specjalista prawa pracy, ekspert PortalKadrowy.pl", v: 4, ln: true, photo: "uploads/Szymon_Sokolik.png" },
-  { initial: "PJ", name: "Paweł Jaworski", role: "Ekspert w dziedzinie prawa migracyjnego i legalizacji pobytu cudzoziemców", v: 1, ln: true, photo: "uploads/Pawel_Jaworski.png" },
   { initial: "MK", name: "Magdalena Król", role: "HR Managerka z sercem, Mentorka, Trenerka, Coach", v: 3, ln: true, photo: "uploads/Magdalena_Krol.png" },
-  { initial: "MS", name: "Marcin Stanecki", role: "Główny Inspektor Pracy", v: 4, ln: false, photo: "uploads/Marcin_Stanecki.jpg" },
-  { initial: "ML", name: "Margaryta Łyczba", role: "Konsultantka Business Central w SMART business", v: 1, ln: true, photo: "uploads/Margaryta_Lyczba.jpg" },
-  { initial: "AG", name: "Agata Skowrońska-Grabowska", role: "Specjalistka HRIS i analityczka biznesowa w SMART business", v: 2, ln: true, photo: "uploads/Agata_Skowronska_Grabowska.jpg" },
-  { initial: "IL", name: "Izabela Leśniewska", role: "Doradca Podatkowy, Kancelaria Doradztwa Podatkowego Alo-2", v: 3, ln: false, photo: "uploads/Izabela_Lesniewska.png" },
-  { initial: "PW", name: "Piotr Wyszumirski", role: "Radca prawny w kancelarii SDZLEGAL SCHINDHELM", v: 4, ln: true, photo: "uploads/Piotr_Wyszumirski.png" },
+  { initial: "?", name: null, role: null, v: 1, ln: false, photo: null, placeholder: true },
+  { initial: "?", name: null, role: null, v: 2, ln: false, photo: null, placeholder: true },
+  { initial: "?", name: null, role: null, v: 3, ln: false, photo: null, placeholder: true },
+  { initial: "?", name: null, role: null, v: 4, ln: false, photo: null, placeholder: true },
 ];
 
 const PILLARS = [
@@ -243,25 +237,12 @@ const TABLES_TOPICS = [
 
 const TICKETS = [
   {
-    type: "Online",
-    name: "Udział online",
-    price: 699,
-    netInfo: "netto + VAT",
-    feat: [
-      "Transmisja na żywo wszystkich wykładów",
-      "Dostęp do nagrań przez 14 dni po wydarzeniu",
-      "Pakiet materiałów pokonferencyjnych",
-      "Imienny certyfikat uczestnictwa",
-      { text: "Udział stacjonarny i networking", no: true },
-    ],
-  },
-  {
-    type: "Stacjonarnie",
+    type: "Wersja standard",
     name: "Udział stacjonarny",
     price: 999,
     netInfo: "netto + VAT",
-    featured: true,
     feat: [
+      "Udział stacjonarny w konferencji",
       "Udział w Warsaw Plaza Hotel, Warszawa",
       "Lunch, przerwy kawowe, networking",
       "Stoliki eksperckie — konsultacje 1:1",
@@ -270,16 +251,22 @@ const TICKETS = [
     ],
   },
   {
-    type: "Warsztaty",
-    name: "Warsztaty drugiego dnia",
-    price: 599,
+    type: "Wersja premium",
+    name: "Udział w konferencji stacjonarnie + warsztaty",
+    price: 1598,
     netInfo: "netto + VAT",
+    featured: true,
     feat: [
+      "Udział stacjonarny w konferencji + udział w wybranym warsztacie",
+      "Udział w Warsaw Plaza Hotel, Warszawa",
+      "Lunch, przerwy kawowe, networking",
+      "Stoliki eksperckie — konsultacje 1:1",
       "Pełny dzień warsztatów (6.11.2026)",
       "Do wyboru: czas pracy lub wartościowanie",
       "Wzory, schematy, narzędzia AI",
       "Praca w małych grupach z ekspertem",
-      "Certyfikat ukończenia warsztatów",
+      "Pakiet materiałów i nagrania (14 dni)",
+      "Imienny certyfikat uczestnictwa",
     ],
   },
 ];
@@ -310,11 +297,11 @@ const HOSTS = [
 const FAQ = [
   {
     q: "W jakich godzinach odbędzie się konferencja?",
-    a: "Konferencja odbędzie się stacjonarnie w Warszawie, w Warsaw Plaza Hotel, ul. Łączyny 5, w dniu 5.11.2026. Rejestracja otworzy się o 8:30, oficjalne otwarcie o 9:00. Zakończymy punktualnie o 17:10. Wydarzenie dostępne jest również w formule online.",
+    a: "Konferencja odbędzie się stacjonarnie w Warszawie, w Warsaw Plaza Hotel, ul. Łączyny 5, w dniu 5.11.2026. Rejestracja otworzy się o 8:30, oficjalne otwarcie o 9:00. Zakończymy punktualnie o 17:10.",
   },
   {
     q: "Czy konferencja jest dostępna online?",
-    a: "Tak, XXIV Ogólnopolskie Kadrowo-Płacowe Forum Ekspertów 2026 jest dostępne również online. Transmisja dla uczestników online rozpocznie się punktualnie o godzinie 9:00.",
+    a: "Aktualnie konferencja dostępna jest wyłącznie w formie stacjonarnej. Zapraszamy do Warsaw Plaza Hotel w Warszawie.",
   },
   {
     q: "Dla kogo jest ta konferencja?",
@@ -346,7 +333,7 @@ const FAQ = [
   },
   {
     q: "Ile kosztuje udział w konferencji?",
-    a: "Udział stacjonarny: 999 zł netto. Udział online: 699 zł netto. Warsztaty drugiego dnia: 599 zł netto. Dostępne są zniżki przy wcześniejszym zakupie — do 30.06.2026 otrzymasz 15% rabatu.",
+    a: "Wersja standard (udział stacjonarny): 999 zł netto. Wersja premium (konferencja + warsztaty): 1598 zł netto. Dostępne są zniżki przy wcześniejszym zakupie — do 30.06.2026 otrzymasz 15% rabatu.",
   },
 ];
 

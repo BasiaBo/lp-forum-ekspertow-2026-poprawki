@@ -68,20 +68,81 @@ function Speakers() {
 
         <div className="speakers-grid">
           {window.SPEAKERS.map((s, i) => (
-            <div className="speaker" key={i}>
+            <div className={`speaker${s.placeholder ? ' speaker-placeholder' : ''}`} key={i}>
               <div className="portrait">
-                {s.photo
-                  ? <img src={s.photo} alt={s.name} className="portrait-img"/>
-                  : <><div className={`ph ph-v${s.v}`}></div><div className="initial">{s.initial}</div></>
+                {s.placeholder
+                  ? <><div className={`ph ph-v${s.v} ph-placeholder`}></div><div className="initial placeholder-icon">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    </div></>
+                  : s.photo
+                    ? <img src={s.photo} alt={s.name} className="portrait-img"/>
+                    : <><div className={`ph ph-v${s.v}`}></div><div className="initial">{s.initial}</div></>
                 }
-                {s.ln && (
-                  <button className="ln" aria-label={`LinkedIn ${s.name}`}>
-                    <window.LinkedInIcon size={13}/>
-                  </button>
-                )}
               </div>
-              <div className="name">{s.name}</div>
-              <div className="role">{s.role}</div>
+              {s.placeholder
+                ? <><div className="name speaker-tba">Prelegent TBA</div><div className="role speaker-tba-role">Informacja wkrótce</div></>
+                : <><div className="name">{s.name}</div><div className="role">{s.role}</div></>
+              }
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Organizer() {
+  return (
+    <section className="organizer-section section-pad" id="organizator">
+      <div className="wrap">
+        <div className="sec-head">
+          <div className="left">
+            <window.Eyebrow icon="shield">Organizator</window.Eyebrow>
+            <h2 className="display" style={{ marginTop: 16 }}>
+              Organizator <span className="text-blue">konferencji.</span>
+            </h2>
+          </div>
+          <p className="lead">
+            XXIV Ogólnopolskie Kadrowo-Płacowe Forum Ekspertów organizowane jest przez Portal Kadrowy — lidera wiedzy z zakresu kadr, płac i&nbsp;prawa pracy w&nbsp;Polsce.
+          </p>
+        </div>
+
+        <div className="organizer-logo-slot">
+          <img src="assets/logo-portal-kadrowy.svg" alt="Portal Kadrowy" className="organizer-logo-img"/>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Partners() {
+  const logos = [
+    { src: "assets/partner1.png", alt: "Partner 1" },
+    { src: "assets/partner2.png", alt: "Partner 2" },
+    null, null, null, null,
+  ];
+  return (
+    <section className="partners-section section-pad" id="partnerzy">
+      <div className="wrap">
+        <div className="sec-head">
+          <div className="left">
+            <window.Eyebrow icon="award">Partnerzy</window.Eyebrow>
+            <h2 className="display" style={{ marginTop: 16 }}>
+              Partnerzy <span className="text-blue">konferencji.</span>
+            </h2>
+          </div>
+          <p className="lead">
+            Dziękujemy partnerom, których wsparcie współtworzy najważniejsze spotkanie środowiska kadrowo-płacowego w Polsce.
+          </p>
+        </div>
+
+        <div className="partners-grid">
+          {logos.map((p, i) => (
+            <div className={`partner-logo-slot${p ? ' partner-logo-slot--filled' : ''}`} key={i} aria-label={p ? p.alt : `Miejsce na logo partnera ${i + 1}`}>
+              {p
+                ? <img src={p.src} alt={p.alt} className="partner-logo-img"/>
+                : <span className="partner-logo-label">Logo partnera</span>
+              }
             </div>
           ))}
         </div>
@@ -113,7 +174,7 @@ function Tickets() {
             </h2>
           </div>
           <p className="lead">
-            Trzy formy uczestnictwa — udział online, stacjonarny lub pełne warsztaty drugiego dnia. Wszystkie ceny netto, faktura w&nbsp;ciągu 24 godzin.
+            Dwie formy uczestnictwa — udział stacjonarny lub udział stacjonarny z&nbsp;warsztatami drugiego dnia. Wszystkie ceny netto, faktura w&nbsp;ciągu 24 godzin.
           </p>
         </div>
 
@@ -122,20 +183,19 @@ function Tickets() {
             <div
               key={i}
               className={`ticket ${selected === i ? 'active' : ''} ${tk.featured ? 'featured' : ''}`}
-              onClick={() => setSelected(i)}
+              onClick={() => { setSelected(i); setTimeout(() => document.getElementById('order-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50); }}
             >
               <div className="t-head">
                 <div>
                   <div className="t-type">{tk.type}</div>
                   <h3 style={{ marginTop: 6 }}>{tk.name}</h3>
                 </div>
-                <div style={{
-                  width: 22, height: 22, borderRadius: '50%',
-                  border: `1.5px solid ${selected === i ? 'var(--green)' : 'var(--line-2)'}`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: selected === i ? 'var(--green)' : 'transparent',
-                }}>
-                  {selected === i && <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'white' }}/>}
+                <div className={`ticket-radio ${selected === i ? 'checked' : ''}`}>
+                  {selected === i && (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <polyline points="2,6 5,9 10,3" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
                 </div>
               </div>
               <div className="price">
@@ -157,7 +217,7 @@ function Tickets() {
         <EarlyBirdBanner/>
 
         {/* Form */}
-        <div className="order-form-wip">
+        <div className="order-form-wip" id="order-form">
           <window.Eyebrow icon="ticket">Formularz zamówienia</window.Eyebrow>
           <h3 className="display order-form-wip-title">Zarezerwuj miejsce.</h3>
           <div className="order-form-wip-box">
@@ -312,7 +372,7 @@ function StickyBuy() {
     <div className="sticky-buy">
       <div>
         <div className="lbl">Od</div>
-        <div className="pr">699 zł</div>
+        <div className="pr">999 zł</div>
       </div>
       <a href="#bilety" className="btn btn-primary" style={{ padding: '12px 18px', fontSize: 14 }}>
         Zarezerwuj miejsce <window.ArrowRight size={12}/>
@@ -321,4 +381,4 @@ function StickyBuy() {
   );
 }
 
-Object.assign(window, { Speakers, Tickets, FAQSection, Footer, StickyBuy });
+Object.assign(window, { Speakers, Organizer, Partners, Tickets, FAQSection, Footer, StickyBuy });

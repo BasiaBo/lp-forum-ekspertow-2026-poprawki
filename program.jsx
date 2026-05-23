@@ -33,6 +33,7 @@ function Program() {
             <h2 className="display" style={{ marginTop: 16 }}>
               Program <span className="text-blue">konferencji.</span>
             </h2>
+            <p className="program-disclaimer">* Organizator zastrzega sobie prawo do zmian w programie.</p>
           </div>
           <p className="lead">
             Dwa dni merytoryki — wykłady i&nbsp;stoliki eksperckie pierwszego dnia, warsztaty praktyczne drugiego. Każdą sesję możesz rozwinąć, by zobaczyć szczegóły i&nbsp;prelegenta.
@@ -235,7 +236,6 @@ function Program() {
               <div className="ws-meta">
                 <div>Data <span className="v">6.11.2026</span></div>
                 <div>Godzina <span className="v">10:00 — 15:00</span></div>
-                <div>Cena <span className="v">599 zł</span></div>
               </div>
             </div>
 
@@ -272,11 +272,11 @@ function Program() {
               <div className="ws-meta">
                 <div>Data <span className="v">6.11.2026</span></div>
                 <div>Godzina <span className="v">10:00 — 15:00</span></div>
-                <div>Cena <span className="v">599 zł</span></div>
               </div>
             </div>
           </div>
         )}
+
       </div>
     </section>
   );

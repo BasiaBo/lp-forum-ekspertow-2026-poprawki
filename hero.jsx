@@ -46,6 +46,48 @@ const NAV_LINKS = [
   { href: "bilety",        label: "Bilety" },
 ];
 
+function PartnersBar() {
+  const [open, setOpen] = useState(false);
+  const partners = [
+    { src: "assets/partner1.png", alt: "Partner 1" },
+    { src: "assets/partner2.png", alt: "Partner 2" },
+    { src: null, alt: "Partner 3" },
+    { src: null, alt: "Partner 4" },
+    { src: null, alt: "Partner 5" },
+  ];
+  const VISIBLE = 2;
+  const hasMore = partners.length > VISIBLE;
+  return (
+    <div className={`partners-bar${open ? ' open' : ''}`}>
+      <div className="wrap partners-bar-inner">
+        <span className="partners-bar-label">Partnerzy</span>
+        <div className="partners-bar-logos">
+          {partners.map((p, i) => (
+            <div className={`partners-bar-slot${i >= VISIBLE ? ' partners-bar-slot--extra' : ''}${!p.src ? ' partners-bar-slot--ph' : ''}`} key={i}>
+              {p.src
+                ? <img src={p.src} alt={p.alt} className="partners-bar-logo-img"/>
+                : <span className="partners-bar-ph-label">Logo</span>
+              }
+            </div>
+          ))}
+        </div>
+        {hasMore && (
+          <button
+            className="partners-bar-toggle"
+            onClick={() => setOpen(o => !o)}
+            aria-label={open ? 'Zwiń partnerów' : 'Rozwiń partnerów'}
+          >
+            <span className="partners-bar-more-label">{open ? 'mniej' : 'więcej'}</span>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="3 6 8 11 13 6"/>
+            </svg>
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function Nav() {
   const [active, setActive] = useState(null);
 
@@ -68,6 +110,8 @@ function Nav() {
   }, []);
 
   return (
+    <>
+    <PartnersBar />
     <header className="nav">
       <div className="wrap nav-inner">
         <a href="#top" className="nav-brand" aria-label="XXIV Forum Ekspertów 2026 - strona główna">
@@ -88,6 +132,7 @@ function Nav() {
         </a>
       </div>
     </header>
+    </>
   );
 }
 
@@ -143,10 +188,6 @@ function Hero() {
               <div className="hem-item">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 <div><strong>Warsaw Plaza Hotel</strong><span>ul. Łączyny 5, Warszawa</span></div>
-              </div>
-              <div className="hem-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
-                <div><strong>Transmisja na żywo online</strong><span>dostęp do nagrań przez 14 dni</span></div>
               </div>
             </div>
           </div>
