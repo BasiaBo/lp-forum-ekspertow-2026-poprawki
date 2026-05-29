@@ -2469,79 +2469,77 @@ h1.hero-h1 .accent { color: var(--orange-light); font-style: normal; }
 }
 .speakers-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 @media (max-width: 900px) { .speakers-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 500px) { .speakers-grid { grid-template-columns: 1fr; } }
+
 .speaker {
   background: white;
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
-  padding: 16px;
+  padding: 20px;
   display: flex;
-  flex-direction: column;
-  gap: 14px;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
   position: relative;
   transition: all .2s;
 }
 .speaker:hover {
   border-color: var(--blue);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow);
 }
-.speaker .portrait {
-  aspect-ratio: 4/5;
-  border-radius: var(--r);
+.speaker-avatar {
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
   overflow: hidden;
   position: relative;
   background: var(--navy);
+  flex-shrink: 0;
 }
-.speaker .portrait .ph {
+.speaker-avatar .ph {
   position: absolute; inset: 0;
+  border-radius: 50%;
 }
-.speaker .portrait .portrait-img {
+.speaker-avatar .portrait-img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: top center;
+  border-radius: 50%;
 }
-.speaker .portrait .initial {
+.speaker-avatar .initial {
   position: absolute;
   left: 50%; top: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--display);
   font-weight: 700;
-  font-size: 64px;
-  color: rgba(255,255,255,0.5);
+  font-size: 26px;
+  color: rgba(255,255,255,0.6);
   line-height: 1;
-  letter-spacing: -0.02em;
 }
-.speaker .portrait .ln {
-  position: absolute;
-  right: 12px; bottom: 12px;
-  width: 34px; height: 34px;
-  border-radius: 8px;
-  background: #0A66C2;
-  color: white;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .15s;
+.speaker-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
 }
-.speaker .portrait .ln:hover { background: #084d96; }
 .speaker .name {
   font-family: var(--display);
-  font-size: 18px;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 700;
   color: var(--ink);
-  padding: 0 4px;
 }
 .speaker .role {
   font-size: 13px;
   color: var(--ink-soft);
   line-height: 1.45;
-  padding: 0 4px 6px;
 }
 
 .speaker-placeholder {
@@ -2555,7 +2553,7 @@ h1.hero-h1 .accent { color: var(--orange-light); font-style: normal; }
   box-shadow: none;
   border-color: var(--line-2);
 }
-.speaker-placeholder .portrait {
+.speaker-placeholder .speaker-avatar {
   background: var(--line);
 }
 .ph-placeholder {

@@ -69,20 +69,22 @@ function Speakers() {
         <div className="speakers-grid">
           {window.SPEAKERS.map((s, i) => (
             <div className={`speaker${s.placeholder ? ' speaker-placeholder' : ''}`} key={i}>
-              <div className="portrait">
+              <div className="speaker-avatar">
                 {s.placeholder
                   ? <><div className={`ph ph-v${s.v} ph-placeholder`}></div><div className="initial placeholder-icon">
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </div></>
                   : s.photo
                     ? <img src={s.photo} alt={s.name} className="portrait-img"/>
                     : <><div className={`ph ph-v${s.v}`}></div><div className="initial">{s.initial}</div></>
                 }
               </div>
-              {s.placeholder
-                ? <><div className="name speaker-tba">Prelegent TBA</div><div className="role speaker-tba-role">Informacja wkrótce</div></>
-                : <><div className="name">{s.name}</div><div className="role">{s.role}</div></>
-              }
+              <div className="speaker-info">
+                {s.placeholder
+                  ? <><div className="name speaker-tba">Prelegent TBA</div><div className="role speaker-tba-role">Informacja wkrótce</div></>
+                  : <><div className="name">{s.name}</div><div className="role">{s.role}</div></>
+                }
+              </div>
             </div>
           ))}
         </div>
